@@ -18,7 +18,7 @@ app.register(fastifyCors, {
 });
 
 app.get('/', async (request, reply) => {
-    return { randomNumber: Math.random() };
+    return "Bonjour, vous étes à la racine";
 });
 
 app.get('/direction', {
