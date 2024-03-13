@@ -18,7 +18,7 @@ app.register(fastifyCors, {
 });
 
 app.get('/', async (request, reply) => {
-    return "Bonjour, vous étes à la racine";
+    return "Bonjour, vous êtes à la racine";
 });
 
 app.get('/direction', {
