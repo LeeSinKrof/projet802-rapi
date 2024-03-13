@@ -64,7 +64,8 @@ app.post('/station', {
 const start = async () => {
     try {
         const port = process.env.PORT || 8080;
-        await app.listen({ port, host: '0.0.0.0' }, () =>
+        const host = process.env.HOST || '0.0.0.0';
+        await app.listen({ port, host: host }, () =>
             console.log('SERVER LISTENING AT PORT : ' + port)
         );
     } catch (err) {
