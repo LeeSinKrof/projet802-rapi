@@ -1,10 +1,9 @@
 
 
 class DirectionRoute {
-    async run(req, reply) {
+    async run(req, reply, apiKey) {
         const coordinates = req.query;
 
-        const apiKey =  '5b3ce3597851110001cf624833af880bacfa443eb51a88e09f6915ee';
         const apiUrl = `https://api.openrouteservice.org/v2/directions/driving-car?api_key=${apiKey}&start=${coordinates.coord1}&end=${coordinates.coord2}`;
 
         try {

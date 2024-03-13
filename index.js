@@ -28,7 +28,7 @@ app.get('/direction', {
             .prop('coord2', S)
     }
 }, async (request, reply) => {
-    return new DirectionRoute().run(request, reply);
+    return new DirectionRoute().run(request, reply, process.env.ROAD_API_KEY);
 });
 
 app.get('/geocode', {
@@ -37,7 +37,7 @@ app.get('/geocode', {
             .prop('search', S.string())
     }
 }, async (request, reply) => {
-    return new GeoCodeRoute().run(request, reply);
+    return new GeoCodeRoute().run(request, reply, process.env.ROAD_API_KEY);
 });
 
 app.get('/vehicle', {
@@ -48,7 +48,7 @@ app.get('/vehicle', {
             .prop('search', S.string().default(''))
     }
 }, async (request, reply) => {
-    return new VehicleRoute().run(request, reply);
+    return new VehicleRoute().run(request, reply, process.env.VEHICLE_API_KEY);
 });
 
 app.post('/station', {

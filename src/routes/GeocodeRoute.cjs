@@ -1,9 +1,8 @@
 
 class GeoCodeRoute {
-    run = async (req, reply) => {
+    run = async (req, reply, apiKey) => {
         const { search } = req.query;
 
-        const apiKey = '5b3ce3597851110001cf624833af880bacfa443eb51a88e09f6915ee';
         const apiUrl = `https://api.openrouteservice.org/geocode/autocomplete?api_key=${apiKey}&text=${search}&boundary.country=FR&size=5`;
 
         try {
