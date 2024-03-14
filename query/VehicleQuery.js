@@ -28,6 +28,10 @@ const vehicleListQuery = qql`
         time
         speed
       }
+      performance {
+        acceleration
+        top_speed
+      }
       range {
         chargetrip_range {
           best
