@@ -14,6 +14,10 @@ const vehicleListQuery = qql`
         speed
         power
       }
+      performance {
+        acceleration
+        top_speed
+      }
       id
       naming {
         make
@@ -27,10 +31,6 @@ const vehicleListQuery = qql`
         power
         time
         speed
-      }
-      performance {
-        acceleration
-        top_speed
       }
       range {
         chargetrip_range {
