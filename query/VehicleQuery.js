@@ -14,10 +14,6 @@ const vehicleListQuery = qql`
         speed
         power
       }
-      performance {
-        acceleration
-        top_speed
-      }
       id
       naming {
         make
