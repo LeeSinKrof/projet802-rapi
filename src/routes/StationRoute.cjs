@@ -24,8 +24,9 @@ function degToRad(deg) {
 
 class StationRoute {
     run = async (req, reply) => {
-        const { body } = req;
-        const { routeCoords, intervalKm } = body;
+        const fields = req.body;
+        const routeCoords = fields.routeCoordinates;
+        const intervalKm = fields.intervalKilometers;
 
         const steps = [];
         steps.push(routeCoords[0]);
