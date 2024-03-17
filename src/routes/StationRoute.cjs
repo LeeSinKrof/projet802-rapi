@@ -24,24 +24,22 @@ function degToRad(deg) {
 
 class StationRoute {
     run = async (req, reply) => {
-        const fields = req.body;
-        const routeCoordinates = fields.routeCoordinates;
-        const intervalKilometers = fields.intervalKilometers;
+        const { body } = req;
+        const { routeCoords, intervalKm } = body;
 
         const steps = [];
-        steps.push(routeCoordinates[0]);
+        steps.push(routeCoords[0]);
 
-        let distanceAccumulator = 0;
+        let distAcc = 0;
 
-        for (let i = 1; i < routeCoordinates.length; i++) {
-            const coord1 = routeCoordinates[i - 1];
-            const coord2 = routeCoordinates[i];
+        for (let i = 1; i < routeCoords.length; i++) {
+            const coord1 = routeCoords[i - 1];
+            const coord2 = routeCoords[i];
 
-            const distanceBetweenPoints = calculateDistance(coord1, coord2);
+            const distBtwn = calculateDistance(coord1, coord2);
+            distAcc += distBtwn;
 
-            distanceAccumulator += distanceBetweenPoints;
-
-            if (distanceAccumulator >= intervalKilometers) {
+            if (distAcc >= intervalKm) {
                 const query = `within_distance(geo_point_borne, GEOM'POINT(${coord1[0]} ${coord2[1]})', ${30000}m)`;
                 const url = `https://odre.opendatasoft.com/api/explore/v2.1/catalog/datasets/bornes-irve/records?limit=1&where=${encodeURIComponent(query)}`;
 
@@ -51,10 +49,9 @@ class StationRoute {
 
                     if (bornes.length > 0) {
                         const nearestBorn = bornes[0];
-                        const latBorne = nearestBorn.geo_point_borne.lat;
-                        const lngBorne = nearestBorn.geo_point_borne.lon;
-                        steps.push([lngBorne, latBorne]);
-                        distanceAccumulator = 0;
+                        const { lat, lon } = nearestBorn.geo_point_borne;
+                        steps.push([lon, lat]);
+                        distAcc = 0;
                     }
                 } catch (error) {
                     console.error('Error fetching data from API:', error);
@@ -63,9 +60,10 @@ class StationRoute {
             }
         }
 
-        steps.push(routeCoordinates[routeCoordinates.length - 1]);
+        steps.push(routeCoords[routeCoords.length - 1]);
         return steps;
     }
 }
+
 
 module.exports = StationRoute;
