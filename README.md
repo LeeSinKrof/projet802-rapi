@@ -1,4 +1,4 @@
-# Projet : Info802 - Serveur
+# Projet : Info802 - REST_API
 
 ## Installation
 
