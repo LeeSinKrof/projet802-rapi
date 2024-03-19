@@ -51,7 +51,7 @@ app.get('/vehicle', {
             .prop('search', S.string().default(''))
     }
 }, async (request, reply) => {
-    return new VehicleRoute().run(request, reply, process.env.VEHICLE_API_KEY);
+    return new VehicleRoute().run(request, reply, process.env.APP_VEHICLE_API_KEY, process.env.CLIENT_VEHICLE_API_KEY);
 });
 
 app.post('/station', {

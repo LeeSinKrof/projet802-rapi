@@ -2,12 +2,12 @@ const { createClient, fetchExchange, cacheExchange } = require('@urql/core');
 const { vehicleListQuery } = require('../../query/VehicleQuery');
 
 class VehicleRoute {
-    run = async (req, reply, key) => {
+    run = async (req, reply, appKey, clientKey) => {
         const options = req.query;
 
         const headers = {
-            'x-client-id': '65a0fad803f11572e9c6ae4a',
-            'x-app-id': key,
+            'x-client-id': clientKey,
+            'x-app-id': appKey,
         };
 
         const client = createClient({
