@@ -40,7 +40,7 @@ class StationRoute {
             const distBtwn = calculateDistance(coord1, coord2);
             distAcc += distBtwn;
 
-            if (distAcc > intervalKm) {
+            if (distAcc >= intervalKm) {
                 const query = `within_distance(geo_point_borne, GEOM'POINT(${coord1[0]} ${coord2[1]})', ${30000}m)`;
                 const url = `https://odre.opendatasoft.com/api/explore/v2.1/catalog/datasets/bornes-irve/records?limit=1&where=${encodeURIComponent(query)}`;
 
