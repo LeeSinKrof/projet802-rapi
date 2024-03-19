@@ -18,7 +18,10 @@ app.register(fastifyCors, {
 });
 
 app.get('/', async (request, reply) => {
-    return "Bonjour, vous êtes à la racine";
+    return "Bonjour, vous êtes à la racine \n" +
+        "Pour obtenir les directions, veuillez aller à /direction \n" +
+        "Pour obtenir les géocodes, veuillez aller à /geocode \n" +
+        "Pour obtenir les véhicules, veuillez aller à /vehicle \n";
 });
 
 app.get('/direction', {
