@@ -22,12 +22,6 @@ const vehicleListQuery = qql`
         edition
         chargetrip_version
       }
-      adapters {
-        standard
-        power
-        time
-        speed
-      }
       range {
         chargetrip_range {
           best
